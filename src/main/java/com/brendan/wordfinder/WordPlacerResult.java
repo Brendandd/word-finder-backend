@@ -11,22 +11,22 @@ import com.brendan.wordfinder.grid.GridLocation;
  * @author Brendan Douglas
  */
 public class WordPlacerResult {
-	private List<GridLocation> placedWordCells = new ArrayList<>();
-	private boolean result;
+    private List<GridLocation> placedWordCells = new ArrayList<>();
+    private boolean result;
 
-	public WordPlacerResult(boolean result) {
-		this.result = result;
-	}
+    public WordPlacerResult(boolean result) {
+        this.result = result;
+    }
 
-	public void addCell(int row, int column) {
-		placedWordCells.add(new GridLocation(row, column));
-	}
+    public void addCell(int row, int column) {
+        placedWordCells.add(new GridLocation(row, column));
+    }
 
-	public List<GridLocation> getPlacedWordCells() {
-		return placedWordCells;
-	}
+    public List<GridLocation> getPlacedWordCells() {
+        return placedWordCells;
+    }
 
-	public boolean isWordPlaced() {
-		return result;
-	}
+    public boolean isWordPlaced() {
+        return result;
+    }
 }

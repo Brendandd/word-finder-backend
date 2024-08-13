@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = { "com.brendan.wordfinder" })
 public class WordFinderApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(WordFinderApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(WordFinderApplication.class, args);
+    }
 }
