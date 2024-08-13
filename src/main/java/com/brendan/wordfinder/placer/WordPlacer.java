@@ -11,15 +11,15 @@ import com.brendan.wordfinder.grid.Grid;
  */
 public interface WordPlacer {
 
-	/**
-	 * Place the word onto the grid at the supplied location.
-	 * 
-	 * @param theWord
-	 * @param grid
-	 * @param row
-	 * @param column
-	 * @return
-	 */
-	WordPlacerResult placeWord(Grid grid, String theWord, int row, int column) throws IllegalGridLocationException;
+    /**
+     * Place the word onto the grid at the supplied location.
+     * 
+     * @param theWord
+     * @param grid
+     * @param row
+     * @param column
+     * @return
+     */
+    WordPlacerResult placeWord(Grid grid, String theWord, int row, int column) throws IllegalGridLocationException;
 
 }

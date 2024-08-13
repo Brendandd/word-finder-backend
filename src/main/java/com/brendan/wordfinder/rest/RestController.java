@@ -15,16 +15,16 @@ import com.brendan.wordfinder.exception.IllegalGridLocationException;
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
 
-	/**
-	 * @return
-	 * @throws IllegalGridLocationException
-	 */
-	@CrossOrigin(origins = "http://localhost:3000") //TODO update - don't hardcode.
-	@PostMapping(value = "/wordfinder", produces = "application/json")
-	public String generateGrid(@RequestBody WordFinderRequest request) throws IllegalGridLocationException {
-		WordFinder wf = new WordFinder(request.getRows(), request.getColumns());
+    /**
+     * @return
+     * @throws IllegalGridLocationException
+     */
+    @CrossOrigin(origins = "http://localhost:3000") // TODO update - don't hardcode.
+    @PostMapping(value = "/wordfinder", produces = "application/json")
+    public String generateGrid(@RequestBody WordFinderRequest request) throws IllegalGridLocationException {
+        WordFinder wf = new WordFinder(request.getRows(), request.getColumns());
 
-		return wf.generate(request.getWords());
-	}
+        return wf.generate(request.getWords());
+    }
 
 }
