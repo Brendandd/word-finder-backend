@@ -1,4 +1,4 @@
-# Word Finder Backend
+# Word Finder Back End
 
 The back-end code for a word finder application.  Exposes
 a REST API which returns the grid, placed words and non placed words (due to space) as JSON.
