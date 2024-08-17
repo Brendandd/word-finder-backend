@@ -17,7 +17,7 @@ public class ReverseHorizontalWordPlacer implements WordPlacer {
 
         // Check to see if the grid has enough column for the word starting at the
         // supplied column.
-        if (column - theWord.length() < 0) {
+        if ((column + 1) - theWord.length() < 0) {
             return new WordPlacerResult(false);
         }
 
