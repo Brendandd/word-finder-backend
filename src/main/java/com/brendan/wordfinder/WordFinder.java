@@ -11,10 +11,11 @@ import org.json.JSONObject;
 import com.brendan.wordfinder.exception.IllegalGridLocationException;
 import com.brendan.wordfinder.grid.Grid;
 import com.brendan.wordfinder.grid.GridLocation;
-import com.brendan.wordfinder.placer.HorizonalWordPlacer;
-import com.brendan.wordfinder.placer.ReverseHorizontalWordPlacer;
-import com.brendan.wordfinder.placer.ReverseVeriticalWordPlacer;
-import com.brendan.wordfinder.placer.VerticalWordPlacer;
+import com.brendan.wordfinder.placer.HorizonalLeftToRightWordPlacer;
+import com.brendan.wordfinder.placer.HorizontalRightToLeftWordPlacer;
+import com.brendan.wordfinder.placer.VeriticalBottomToTopWordPlacer;
+import com.brendan.wordfinder.placer.DiagonalTopLeftToBottomRightWordPlacer;
+import com.brendan.wordfinder.placer.VerticalTopToBottomWordPlacer;
 import com.brendan.wordfinder.placer.WordPlacer;
 
 /**
@@ -55,10 +56,11 @@ public class WordFinder {
 
             // The available word placers. Once a word placer is tried and failed it
             // is then removed from the list so another can be tried.
-            notAttemptedWordPlacer.add(new HorizonalWordPlacer());
-            notAttemptedWordPlacer.add(new VerticalWordPlacer());
-            notAttemptedWordPlacer.add(new ReverseHorizontalWordPlacer());
-            notAttemptedWordPlacer.add(new ReverseVeriticalWordPlacer());
+            notAttemptedWordPlacer.add(new HorizonalLeftToRightWordPlacer());
+            notAttemptedWordPlacer.add(new VerticalTopToBottomWordPlacer());
+            notAttemptedWordPlacer.add(new HorizontalRightToLeftWordPlacer());
+            notAttemptedWordPlacer.add(new VeriticalBottomToTopWordPlacer());
+            notAttemptedWordPlacer.add(new DiagonalTopLeftToBottomRightWordPlacer());
 
             while (!placed && notAttemptedWordPlacer.size() > 0) {
                 int randomWordPlacer = random.nextInt(notAttemptedWordPlacer.size());

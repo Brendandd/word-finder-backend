@@ -5,19 +5,18 @@ import com.brendan.wordfinder.exception.IllegalGridLocationException;
 import com.brendan.wordfinder.grid.Grid;
 
 /**
- * A reverse horizontal word placer. Attempts to place the word horizontal right
- * to left.
+ * A vertical top tp bottom word placer.
  * 
  * @author Brendan Douglas
  */
-public class ReverseHorizontalWordPlacer implements WordPlacer {
+public class VerticalTopToBottomWordPlacer implements WordPlacer {
 
     @Override
     public WordPlacerResult placeWord(Grid grid, String theWord, int row, int column) throws IllegalGridLocationException {
 
-        // Check to see if the grid has enough column for the word starting at the
-        // supplied column.
-        if ((column + 1) - theWord.length() < 0) {
+        // Check to see if the grid has enough rows for the word starting at the
+        // supplied row.
+        if (row + theWord.length() > grid.getNumberOfRows()) {
             return new WordPlacerResult(false);
         }
 
@@ -25,7 +24,7 @@ public class ReverseHorizontalWordPlacer implements WordPlacer {
         // or has a matching character
         for (int i = 0; i < theWord.length(); i++) {
             Character wordCharacter = theWord.charAt(i);
-            Character gridCharacter = grid.getCellValue(row, column - i);
+            Character gridCharacter = grid.getCellValue(row + i, column);
 
             if (gridCharacter != null && !gridCharacter.equals(wordCharacter)) {
                 return new WordPlacerResult(false);
@@ -36,8 +35,8 @@ public class ReverseHorizontalWordPlacer implements WordPlacer {
         WordPlacerResult successResult = new WordPlacerResult(true);
 
         for (int i = 0; i < theWord.length(); i++) {
-            grid.setCellValue(theWord.charAt(i), row, column - i);
-            successResult.addCell(row, column - i);
+            grid.setCellValue(theWord.charAt(i), row + i, column);
+            successResult.addCell(row + i, column);
         }
 
         return successResult;
