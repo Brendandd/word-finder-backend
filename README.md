@@ -1,21 +1,22 @@
 # Word Finder Back End
 
-The back-end code for a word finder application.  Exposes
-a REST API which returns the grid, placed words and non placed words (due to space) as JSON.
-<br/>
-<br/>
-Currently has 4 word placer types:
-* Horizontal (left to right)
-* Reverse Horizontal (right to left)
-* Vertical (top to bottom)
-* Reverse Vertical (bottom to top)
-<br/>
-<br/>
-The next version will place words diagonally.
+The back-end code for a Word Finder application. This component exposes a REST API that returns the grid, placed words, and any words that could not be placed due to space constraints, all as JSON.
+
+Currently, five word placement types are supported:
+
+<ol>
+<li>Horizontal (left to right)</li>
+<li>Reverse Horizontal (right to left)</li>
+<li>Vertical (top to bottom)</li>
+<li>Reverse Vertical (bottom to top)</li>
+<li>Diagonal (top left to bottom right)</li>
+</ol>
+
+The next version will introduce additional diagonal word placement options.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development purposes.
+These instructions will help you set up a local development environment.
 
 ### Prerequisites
 
@@ -24,12 +25,11 @@ None
 
 ### Installation
 
-A step by step guide that will tell you how to get the development environment up and running.
+Follow these steps to install and run the application:
 
 ```
 mvn clean install
-cd target
-java -jar word-finder-0.0.1-SNAPSHOT.jar
+mvn spring-boot:run
 ```
 
 
