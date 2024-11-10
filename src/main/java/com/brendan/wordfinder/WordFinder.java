@@ -11,10 +11,11 @@ import org.json.JSONObject;
 import com.brendan.wordfinder.exception.IllegalGridLocationException;
 import com.brendan.wordfinder.grid.Grid;
 import com.brendan.wordfinder.grid.GridLocation;
+import com.brendan.wordfinder.placer.DiagonalTopLeftToBottomRightWordPlacer;
+import com.brendan.wordfinder.placer.DiagonalTopRightToBottomLeftWordPlacer;
 import com.brendan.wordfinder.placer.HorizonalLeftToRightWordPlacer;
 import com.brendan.wordfinder.placer.HorizontalRightToLeftWordPlacer;
 import com.brendan.wordfinder.placer.VeriticalBottomToTopWordPlacer;
-import com.brendan.wordfinder.placer.DiagonalTopLeftToBottomRightWordPlacer;
 import com.brendan.wordfinder.placer.VerticalTopToBottomWordPlacer;
 import com.brendan.wordfinder.placer.WordPlacer;
 
@@ -61,6 +62,7 @@ public class WordFinder {
             notAttemptedWordPlacer.add(new HorizontalRightToLeftWordPlacer());
             notAttemptedWordPlacer.add(new VeriticalBottomToTopWordPlacer());
             notAttemptedWordPlacer.add(new DiagonalTopLeftToBottomRightWordPlacer());
+            notAttemptedWordPlacer.add(new DiagonalTopRightToBottomLeftWordPlacer());
 
             while (!placed && notAttemptedWordPlacer.size() > 0) {
                 int randomWordPlacer = random.nextInt(notAttemptedWordPlacer.size());
