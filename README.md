@@ -2,7 +2,7 @@
 
 The back-end code for a Word Finder application. This component exposes a REST API that returns the grid, placed words, and any words that could not be placed due to space constraints, all as JSON.
 
-Currently, five word placement types are supported:
+Currently, six word placement types are supported:
 
 <ol>
 <li>Horizontal (left to right)</li>
@@ -10,6 +10,7 @@ Currently, five word placement types are supported:
 <li>Vertical (top to bottom)</li>
 <li>Reverse Vertical (bottom to top)</li>
 <li>Diagonal (top left to bottom right)</li>
+<li>Diagonal (top right to bottom left)</li>
 </ol>
 
 The next version will introduce additional diagonal word placement options.
