@@ -50,11 +50,9 @@ public abstract class WordPlacer {
             }
         }
 
-        boolean placed = false;
-
         // Keep attempting to place the word until no more locations are available or
         // the word is placed.
-        while (!placed && notAttemptedGridLocations.size() > 0) {
+        while (notAttemptedGridLocations.size() > 0) {
             int gridLocationToAttempt = random.nextInt(notAttemptedGridLocations.size());
             GridLocation selectedGridLocation = notAttemptedGridLocations.get(gridLocationToAttempt);
             notAttemptedGridLocations.remove(gridLocationToAttempt);
