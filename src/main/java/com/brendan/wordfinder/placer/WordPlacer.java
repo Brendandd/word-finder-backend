@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.slf4j.Logger;
+
 import com.brendan.wordfinder.WordPlacerResult;
 import com.brendan.wordfinder.exception.IllegalGridLocationException;
 import com.brendan.wordfinder.grid.Grid;
@@ -15,6 +17,7 @@ import com.brendan.wordfinder.grid.GridLocation;
  * @author Brendan Douglas
  */
 public abstract class WordPlacer {
+    
 
     /**
      * Attempt to place the word onto the grid at the supplied location.
@@ -27,6 +30,11 @@ public abstract class WordPlacer {
      */
     protected abstract WordPlacerResult placeWord(Grid grid, String theWord, GridLocation gridLocation)
             throws IllegalGridLocationException;
+    
+    
+    public abstract String getName();
+    
+    public abstract Logger getLogger();
 
     /**
      * Attempt to place the word onto the grid. All locations are attempted until a
@@ -60,10 +68,12 @@ public abstract class WordPlacer {
             WordPlacerResult result = placeWord(grid, theWord, selectedGridLocation);
 
             if (result.isWordPlaced()) {
+                getLogger().info("Success - Word \"{}\" has been placed in the grid by word placer \"{}\"", theWord, this.getName());
                 return result;
             }
         }
 
+        getLogger().info("Unable to place word - Word \"{}\" has NOT been placed in the grid by word placer \"{}\"", theWord, this.getName());
         return new WordPlacerResult(false);
     }
 }

@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Random;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.brendan.wordfinder.exception.IllegalGridLocationException;
 import com.brendan.wordfinder.grid.Grid;
@@ -25,6 +27,8 @@ import com.brendan.wordfinder.placer.WordPlacer;
  * @author Brendan Douglas
  */
 public class WordFinder {
+    private static final Logger logger = LoggerFactory.getLogger(WordFinder.class);
+    
     private List<WordPlacer> notAttemptedWordPlacer = new ArrayList<>();
     private Grid grid;
 
@@ -74,8 +78,10 @@ public class WordFinder {
             }
             
             if (result.isWordPlaced()) {
+                logger.info("Word \"{}\" has been placed in the grid", word);
                 placedWords.put(word, result.getPlacedWordCells()); 
             } else {
+                logger.info("Word \"{}\" has NOT been placed in the grid after attempting all placer types and locations", word);
                 notPlacedWords.add(word);
             }
         }

@@ -1,5 +1,8 @@
 package com.brendan.wordfinder.placer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.brendan.wordfinder.WordPlacerResult;
 import com.brendan.wordfinder.exception.IllegalGridLocationException;
 import com.brendan.wordfinder.grid.Grid;
@@ -11,6 +14,9 @@ import com.brendan.wordfinder.grid.GridLocation;
  * @author Brendan Douglas
  */
 public class DiagonalTopRightToBottomLeftWordPlacer extends WordPlacer {
+    public static String NAME = "Diagonal Top Right To Bottom Left Word Placer";
+    
+    private static final Logger logger = LoggerFactory.getLogger(DiagonalTopRightToBottomLeftWordPlacer.class);
 
     @Override
     protected WordPlacerResult placeWord(Grid grid, String theWord, GridLocation gridLocation)
@@ -48,5 +54,16 @@ public class DiagonalTopRightToBottomLeftWordPlacer extends WordPlacer {
         }
 
         return successResult;
+    }
+    
+    
+    @Override
+    public String getName() {
+        return NAME;
+    }
+    
+    @Override
+    public Logger getLogger() {
+        return logger;
     }
 }
