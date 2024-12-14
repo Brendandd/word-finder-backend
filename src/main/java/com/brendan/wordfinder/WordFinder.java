@@ -51,6 +51,7 @@ public class WordFinder {
         for (String word : words) {
             word = word.toUpperCase();
 
+
             Random random = new Random();
 
             // The available word placers. Once a word placer is tried and failed it
@@ -62,15 +63,18 @@ public class WordFinder {
             notAttemptedWordPlacer.add(new DiagonalTopLeftToBottomRightWordPlacer());
             notAttemptedWordPlacer.add(new DiagonalTopRightToBottomLeftWordPlacer());
 
-            int randomWordPlacer = random.nextInt(notAttemptedWordPlacer.size());
-            WordPlacer selectedWordPlacer = notAttemptedWordPlacer.get(randomWordPlacer);
-            notAttemptedWordPlacer.remove(randomWordPlacer);
+            WordPlacerResult result = new WordPlacerResult(false);
+            
+            while (!result.isWordPlaced() && notAttemptedWordPlacer.size() > 0) {
+                int randomWordPlacer = random.nextInt(notAttemptedWordPlacer.size());
+                WordPlacer selectedWordPlacer = notAttemptedWordPlacer.get(randomWordPlacer);
+                notAttemptedWordPlacer.remove(randomWordPlacer);
 
-            WordPlacerResult result = grid.placeWord(word, selectedWordPlacer);
-
-            // Process the result.
+                result = grid.placeWord(word, selectedWordPlacer);
+            }
+            
             if (result.isWordPlaced()) {
-                placedWords.put(word, result.getPlacedWordCells());
+                placedWords.put(word, result.getPlacedWordCells()); 
             } else {
                 notPlacedWords.add(word);
             }
