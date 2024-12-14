@@ -25,7 +25,6 @@ import com.brendan.wordfinder.placer.WordPlacer;
  * @author Brendan Douglas
  */
 public class WordFinder {
-    private List<GridLocation> notAttemptedGridLocations = new ArrayList<>();
     private List<WordPlacer> notAttemptedWordPlacer = new ArrayList<>();
     private Grid grid;
 
@@ -52,7 +51,6 @@ public class WordFinder {
         for (String word : words) {
             word = word.toUpperCase();
 
-            boolean placed = false;
             Random random = new Random();
 
             // The available word placers. Once a word placer is tried and failed it
@@ -64,40 +62,16 @@ public class WordFinder {
             notAttemptedWordPlacer.add(new DiagonalTopLeftToBottomRightWordPlacer());
             notAttemptedWordPlacer.add(new DiagonalTopRightToBottomLeftWordPlacer());
 
-            while (!placed && notAttemptedWordPlacer.size() > 0) {
-                int randomWordPlacer = random.nextInt(notAttemptedWordPlacer.size());
-                WordPlacer selectedWordPlacer = notAttemptedWordPlacer.get(randomWordPlacer);
-                notAttemptedWordPlacer.remove(randomWordPlacer);
+            int randomWordPlacer = random.nextInt(notAttemptedWordPlacer.size());
+            WordPlacer selectedWordPlacer = notAttemptedWordPlacer.get(randomWordPlacer);
+            notAttemptedWordPlacer.remove(randomWordPlacer);
 
-                // Initialise the list of not tried grid locations. Once a location is tried and
-                // fails it
-                // is removed from the list.
-                for (int i = 0; i < grid.getNumberOfRows(); i++) {
-                    for (int j = 0; j < grid.getNumberOfColumns(); j++) {
-                        notAttemptedGridLocations.add(new GridLocation(i, j));
-                    }
-                }
+            WordPlacerResult result = grid.placeWord(word, selectedWordPlacer);
 
-                // For the randomly selected word placer we try each location until placed
-                // or we have tried all locations.
-                while (!placed && notAttemptedGridLocations.size() > 0) {
-                    int gridLocationToAttempt = random.nextInt(notAttemptedGridLocations.size());
-                    GridLocation selectedGridLocation = notAttemptedGridLocations.get(gridLocationToAttempt);
-                    notAttemptedGridLocations.remove(gridLocationToAttempt);
-
-                    WordPlacerResult result = grid.placeWord(word, selectedGridLocation.getRow(),
-                            selectedGridLocation.getColumn(), selectedWordPlacer);
-
-                    // The word is placed in the grid. The location of the word is retained.
-                    if (result.isWordPlaced()) {
-                        placedWords.put(word, result.getPlacedWordCells());
-                        placed = true;
-                        break;
-                    }
-                }
-            }
-
-            if (!placed) {
+            // Process the result.
+            if (result.isWordPlaced()) {
+                placedWords.put(word, result.getPlacedWordCells());
+            } else {
                 notPlacedWords.add(word);
             }
         }

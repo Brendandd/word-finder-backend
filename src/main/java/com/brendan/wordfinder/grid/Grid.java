@@ -128,13 +128,8 @@ public class Grid {
      * @param wordPlacer
      * @return
      */
-    public WordPlacerResult placeWord(String theWord, int row, int column, WordPlacer wordPlacer)
-            throws IllegalGridLocationException {
-        if (!validateGridLocation(row, column)) {
-            throw new IllegalGridLocationException("Ilegal grid location supplied", row, column);
-        }
-
-        return wordPlacer.placeWord(this, theWord, row, column);
+    public WordPlacerResult placeWord(String theWord, WordPlacer wordPlacer) throws IllegalGridLocationException {
+        return wordPlacer.placeWord(this, theWord);
     }
 
     /**
