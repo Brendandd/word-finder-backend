@@ -15,8 +15,8 @@ import com.brendan.wordfinder.placer.WordPlacer;
  */
 public class Grid {
     private Character[][] theGrid;
-    int numberOfRows;
-    int numberOfColumns;
+    private int numberOfRows;
+    private int numberOfColumns;
 
     private Grid() {
     }
